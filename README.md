@@ -7,17 +7,19 @@ https://docs.google.com/document/d/1-_DgZIrc7sK97jgG5NsHBsYBcBo7vsXbLMf2EG1Rv9I/
 
 ### Схема базы данных
 
-Концептуальная схема - `concept_schema.puml`
-Логическая схема - `logical_schema.puml`
-Физическая схема - `database.sql`
+* Концептуальная схема - `concept_schema.puml`
+* Логическая схема - `logical_schema.puml`
+* Физическая схема - `database.sql`
+
+Тестовые данные для таблиц - `example_data.sql`
 
 ### Типовые запросы
 
-* `sample_requests/external_users_view` - получить отображение "подтвержденный внешний пользователь, насыщенный внутренними данными нашего ID сервиса"
-* `sample_requests/user_gender_stats` - найти число пользователей каждого пола, если их больше 5-ти
-* `sample_requests/active_sessions_count` - посчитать активные сессии для каждого пользователя
-* `sample_requests/user_sessions_rank` - найти пользователей с их последними активными сессиями и добавить информацию о ранге активности (на основе времени создания сессий)
-* `sample_requests/find_users_without_sessions` - найти пользователей без активных сессий.
+* `sample_requests/external_users_view.sql` - получить отображение "подтвержденный внешний пользователь, насыщенный внутренними данными нашего ID сервиса"
+* `sample_requests/user_gender_stats.sql` - найти число пользователей каждого пола, если их больше 5-ти
+* `sample_requests/active_sessions_count.sql` - посчитать активные сессии для каждого пользователя
+* `sample_requests/user_sessions_rank.sql` - найти пользователей с их последними активными сессиями и добавить информацию о ранге активности (на основе времени создания сессий)
+* `sample_requests/find_users_without_sessions.sql` - найти пользователей без активных сессий.
 
 ### Анализ нормальных форм таблиц
 
