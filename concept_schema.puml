@@ -1,0 +1,76 @@
+@startuml
+entity "Users" as users {
+    * Email
+    * Phone number
+    * Username
+    * First name
+    * Last name
+    * Gender
+    * Email verified
+    * Phone number verified
+    * Birthdate
+    * Enabled
+    * Avatar
+    * Deleted at
+}
+
+entity "Credentials" as credentials {
+    * Type
+    * Secret
+}
+
+entity "UserSessions" as user_sessions {
+    * Status
+    * Token
+    * Remember me
+    * Created at
+    * Updated at
+}
+
+entity "ClientSessions" as client_sessions {
+    * Client ID
+    * Redirect URI
+    * Status
+    * Created at
+    * Updated at
+}
+
+entity "Confirmations" as confirmations {
+    * Type
+    * Token
+    * Created at
+    * Expires at
+}
+
+entity "ExternalUsers" as external_users {
+    * Provider
+    * External ID
+}
+
+entity "RecoveryCodes" as recovery_codes {
+    * Code
+    * Created at
+    * Used at
+}
+
+entity "ClientsJoinData" as clients_join_data {
+    * Client
+    * Joined at
+}
+
+entity "ProfileChangesHistory" as profile_changes_history {
+    * Field
+    * Old value
+    * New value
+    * Changed at
+}
+
+users ||--o{ credentials : "1:N"
+users ||--o{ user_sessions : "1:N"
+user_sessions ||--o{ client_sessions : "1:N"
+users ||--o{ confirmations : "1:N"
+users ||--o{ external_users : "1:N"
+users ||--o{ recovery_codes : "1:N"
+users ||--o{ clients_join_data : "1:N"
+users ||--o{ profile_changes_history : "1:N"
+@enduml

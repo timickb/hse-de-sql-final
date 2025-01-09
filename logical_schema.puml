@@ -1,0 +1,102 @@
+@startuml
+entity "Users" as users {
+    * id : UUID [PK]
+    --
+    email : TEXT
+    phone_number : TEXT
+    username : TEXT
+    first_name : TEXT
+    last_name : TEXT
+    gender : TEXT
+    email_verified : BOOLEAN
+    phone_number_verified : BOOLEAN
+    birthdate : DATE
+    enabled : BOOLEAN
+    avatar_url : TEXT
+    deleted_at : TIMESTAMP
+}
+
+entity "Credentials" as credentials {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    type : TEXT
+    secret : TEXT
+}
+
+entity "UserSessions" as user_sessions {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    status : TEXT
+    token : UUID
+    remember_me : BOOLEAN
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "ClientSessions" as client_sessions {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    user_session_id : UUID [FK]
+    client_id : TEXT
+    redirect_uri : TEXT
+    status : TEXT
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "Confirmations" as confirmations {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    type : TEXT
+    token : TEXT
+    created_at : TIMESTAMP
+    expires_at : TIMESTAMP
+}
+
+entity "ExternalUsers" as external_users {
+    * id : UUID [PK]
+    --
+    provider : TEXT
+    external_id : TEXT
+    user_id : UUID [FK]
+}
+
+entity "RecoveryCodes" as recovery_codes {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    code : TEXT
+    created_at : TIMESTAMP
+    used_at : TIMESTAMP
+}
+
+entity "ClientsJoinData" as clients_join_data {
+    * user_id : UUID [PK, FK]
+    * client_id : TEXT [PK]
+    --
+    joined_at : TIMESTAMP
+}
+
+entity "ProfileChangesHistory" as profile_changes_history {
+    * id : UUID [PK]
+    --
+    user_id : UUID [FK]
+    changed_at : TIMESTAMP
+    field : TEXT
+    old_value : TEXT
+    new_value : TEXT
+}
+
+users ||--o{ credentials : "1:N"
+users ||--o{ user_sessions : "1:N"
+user_sessions ||--o{ client_sessions : "1:N"
+users ||--o{ confirmations : "1:N"
+users ||--o{ external_users : "1:N"
+users ||--o{ recovery_codes : "1:N"
+users ||--o{ clients_join_data : "1:N"
+users ||--o{ profile_changes_history : "1:N"
+@enduml
